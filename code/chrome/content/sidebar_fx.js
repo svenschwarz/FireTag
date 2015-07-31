@@ -114,11 +114,11 @@ Sidebar.getResourceTextForOBIE = function(resource) {
         }
 
         // TODO: HACK
-        let bodyText = body.textContent.replace(/(\n|\t)/g, " ");
-        bodyText = bodyText.replace(/<(!--)?.*?(--)?>/g, " ");
-        bodyText = bodyText.replace(/\s+/g, " ");
-        bodyText = bodyText.substring(0, Sidebar.STRIP_PER_RESOURCE);
-        return bodyText;
+        //let bodyText = body.textContent.replace(/(\n|\t)/g, " ");
+        //bodyText = bodyText.replace(/<(!--)?.*?(--)?>/g, " ");
+        //bodyText = bodyText.replace(/\s+/g, " ");
+        //bodyText = bodyText.substring(0, Sidebar.STRIP_PER_RESOURCE);
+        //return bodyText;
+        return body.innerHTML.replace(/(\n|\t)/g, " ");
     }
-
 };
