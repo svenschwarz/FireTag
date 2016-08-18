@@ -165,7 +165,7 @@ EAAutoCompleteSearch.prototype = {
         if (!dfki.FireTag.common.showDocuments)
             excludeTypes.push("pimo:thing#Document");
         if (!dfki.FireTag.common.showTasks)
-            excludeTypes.push("pimo:thing#Task");
+            excludeTypes.push("pimo:task#Task");
 
         let json = {
             method : "PimoTexanaApi.searchForThingsWithLabelLikeWithTypeFilter",
