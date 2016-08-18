@@ -10,7 +10,7 @@ The FireTag sidebar uses this service and presents annotated and suggested conce
 
 ## Development
 
-See [the wiki](https://github.com/wagnerand/FireTag/wiki/DeveloperInstructions) for developer instructions.
+See [the wiki](https://github.com/svenschwarz/FireTag/wiki/DeveloperInstructions) for developer instructions.
 
 
 ## Contact
