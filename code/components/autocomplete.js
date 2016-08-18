@@ -161,29 +161,24 @@ EAAutoCompleteSearch.prototype = {
         if (searchString.indexOf("*") >= 0 )
         	maxMatches = 0;
 
+        let excludeTypes = [];
+        if (!dfki.FireTag.common.showDocuments)
+            excludeTypes.push("pimo:thing#Document");
+        if (!dfki.FireTag.common.showTasks)
+            excludeTypes.push("pimo:thing#Task");
+
         let json = {
-            method : "PimoSearchApi.searchForThingsWithLabelLike",
-            params : [dfki.FireTag.common.authKey, "*" + searchString + "*", 0, maxMatches]
+            method : "PimoTexanaApi.searchForThingsWithLabelLikeWithTypeFilter",
+            params : [dfki.FireTag.common.authKey, searchString, excludeTypes, 0, maxMatches]
         };
         let callback = function (response, counter) {
             if (counter !== globalRequestCounter) {
                 return;
             }
+            dfki.FireTag.common.LOG("response: " + response);
             let rpcResult = JSON.parse(response).result;
             dfki.FireTag.common.autoComplete.results = [];
             for (let i = 0; i < rpcResult.length; i++) {
-                if (testConceptIsOfType(rpcResult[i], "pimo:informationelement#InformationElement")) {
-                    continue;
-                }
-                if (testConceptIsOfType(rpcResult[i], "pimo:thing#Document")) {
-                    if (!dfki.FireTag.common.showDocuments)
-                        continue;
-                }
-                if (testConceptIsOfType(rpcResult[i], "pimo:thing#Task")) {
-                    if (!dfki.FireTag.common.showTasks)
-                        continue;
-                }
-
                 dfki.FireTag.common.autoComplete.results[dfki.FireTag.common.autoComplete.results.length] = {
                     uri : rpcResult[i].uri,
                     label : rpcResult[i].label.trim(),
@@ -194,7 +189,7 @@ EAAutoCompleteSearch.prototype = {
             let newResult = new EAAutoCompleteResult(searchString, Ci.nsIAutoCompleteResult.RESULT_SUCCESS, 0, "", dfki.FireTag.common.autoComplete.results);
             listener.onSearchResult(that, newResult);
         };
-        dfki.FireTag.rpc.JSONRPCCall(json, callback, globalRequestCounter);
+        dfki.FireTag.rpc.JSONRPCCall(json, callback, globalRequestCounter, "texana");
     },
 
     /*

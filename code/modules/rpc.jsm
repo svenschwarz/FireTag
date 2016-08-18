@@ -14,12 +14,15 @@ let rpc = {
 
     globalCount : 0,
 
-    JSONRPCCall : function (json, callback, param) {
+    JSONRPCCall : function (json, callback, param, endpoint) {
+        if (endpoint === undefined)
+            endpoint = "pimodb";
+
         let localCount = ++this.globalCount;
         let start = Date.now();
 
         let destination = dfki.FireTag.common.prefBranch.getCharPref("servers").split(",")[0].split("|")[0].trim();
-        destination += "pimodb/json-rpc";
+        destination += endpoint + "/json-rpc";
 
         let p = Components.classes["@mozilla.org/xmlextras/xmlhttprequest;1"]
                 .createInstance(Components.interfaces.nsIXMLHttpRequest);
