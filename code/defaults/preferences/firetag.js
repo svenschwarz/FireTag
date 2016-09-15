@@ -8,3 +8,5 @@ pref("extensions.dfki.FireTag.autocomplete.showTasks", false);
 pref("extensions.dfki.FireTag.suggestConcepts", true);
 pref("extensions.dfki.FireTag.debug", false);
 pref("extensions.dfki.FireTag.debug.rpc", false);
+
+pref("extensions.dfki.FireTag.storeText", false);

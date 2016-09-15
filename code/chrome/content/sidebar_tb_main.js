@@ -96,7 +96,7 @@ Sidebar.getCurrentSelectionCount = function() {
 Sidebar.getResourcesMetadata = function(resources) {
     let result = [];
     for (let i = 0, len = resources.length; i < len; i++) {
-        result.push({
+        var meta = {
             uri : Sidebar.getPimoResourceUri(resources[i]),
             label : Sidebar.getPimoResourceLabel(resources[i]),
             messageURI : resources[i].folder.getUriForMsg(resources[i]),
@@ -109,7 +109,13 @@ Sidebar.getResourcesMetadata = function(resources) {
             cc : resources[i].ccList,
             bcc : resources[i].bccList,
             subject : resources[i].mime2DecodedSubject
-        });
+        };
+        if (Sidebar.prefs.getBoolPref("storeText")) {
+        	var text = Sidebar.getMessageBody(resources[i]);
+        	if (text && text.length > 0)
+        		meta.text = text;
+        }
+        result.push(meta);
     }
     return result;
 };

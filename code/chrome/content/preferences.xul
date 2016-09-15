@@ -13,6 +13,7 @@
             <preference id="autocompleteShowTasks" name="extensions.dfki.FireTag.autocomplete.showTasks" type="bool" />
             <preference id="suggestConcepts" name="extensions.dfki.FireTag.suggestConcepts" type="bool" />
             <preference id="debug" name="extensions.dfki.FireTag.debug" type="bool" />
+            <preference id="storeText" name="extensions.dfki.FireTag.storeText" type="bool" />
             <preference id="servers" name="extensions.dfki.FireTag.servers" type="string" />
         </preferences>
         <vbox>
@@ -25,6 +26,7 @@
                 <checkbox label="Show documents in autocomplete popup" preference="autocompleteShowDocuments" />
                 <checkbox label="Suggest concepts" preference="suggestConcepts" />
                 <checkbox label="Debug mode" preference="debug" />
+                <checkbox label="Store text content in PIMO" preference="storeText" />
             </vbox>
         </vbox>
     </prefpane>
